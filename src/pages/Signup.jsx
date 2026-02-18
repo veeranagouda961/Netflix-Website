@@ -22,7 +22,7 @@ function Signup() {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch('/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,12 @@ function Signup() {
 
             navigate('/login');
         } catch (err) {
-            setError(err.message);
+            console.error(err);
+            if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+                setError('Unable to connect. Please check your internet connection and try again.');
+            } else {
+                setError(err.message);
+            }
         } finally {
             setLoading(false);
         }

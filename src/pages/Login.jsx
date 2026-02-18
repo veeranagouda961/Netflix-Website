@@ -17,7 +17,7 @@ function Login() {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +34,12 @@ function Login() {
             login(data.token, data.user);
             navigate('/');
         } catch (err) {
-            setError(err.message);
+            console.error(err); // Good practice to log the actual error
+            if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+                setError('Unable to connect. Please check your internet connection and try again.');
+            } else {
+                setError(err.message);
+            }
         } finally {
             setLoading(false);
         }
