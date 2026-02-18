@@ -16,33 +16,23 @@ function Login() {
         setError('');
         setLoading(true);
 
-        try {
-            const response = await fetch('/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
+        // Simulate network delay
+        setTimeout(() => {
+            const storedUser = JSON.parse(localStorage.getItem('registeredUser'));
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to login');
-            }
-
-            login(data.token, data.user);
-            navigate('/');
-        } catch (err) {
-            console.error(err); // Good practice to log the actual error
-            if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
-                setError('Unable to connect. Please check your internet connection and try again.');
+            if (storedUser && storedUser.email === email && storedUser.password === password) {
+                // Success: Create valid session
+                login('hero-token-' + Date.now(), {
+                    id: 1,
+                    name: storedUser.name,
+                    email: storedUser.email
+                });
+                navigate('/');
             } else {
-                setError(err.message);
+                setError('Invalid email or password.');
             }
-        } finally {
             setLoading(false);
-        }
+        }, 800);
     };
 
     return (

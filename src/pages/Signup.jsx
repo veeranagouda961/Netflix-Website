@@ -21,32 +21,15 @@ function Signup() {
 
         setLoading(true);
 
-        try {
-            const response = await fetch('/api/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, password }),
-            });
+        // Simulate network delay
+        setTimeout(() => {
+            // Frontend-only: Store user in localStorage
+            const user = { name, email, password };
+            localStorage.setItem('registeredUser', JSON.stringify(user));
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to register');
-            }
-
-            navigate('/login');
-        } catch (err) {
-            console.error(err);
-            if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
-                setError('Unable to connect. Please check your internet connection and try again.');
-            } else {
-                setError(err.message);
-            }
-        } finally {
             setLoading(false);
-        }
+            navigate('/login');
+        }, 800);
     };
 
     return (
