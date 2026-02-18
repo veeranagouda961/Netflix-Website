@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import './Navbar.css'
 
 function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { logout } = useAuth()
   const [term, setTerm] = useState('')
 
   const isHome = location.pathname === '/'
@@ -15,6 +17,11 @@ function Navbar() {
     if (!trimmed) return
 
     navigate(`/search?query=${encodeURIComponent(trimmed)}`)
+  }
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
   }
 
   return (
@@ -55,6 +62,13 @@ function Navbar() {
             <span className="navbar__icon-search" />
           </button>
         </form>
+        <button
+          className="navbar__link navbar__logout"
+          onClick={handleLogout}
+          style={{ marginLeft: '1rem', background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}
+        >
+          Logout
+        </button>
       </div>
     </header>
   )
