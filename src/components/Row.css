@@ -1,0 +1,75 @@
+.row {
+  margin-bottom: 1.75rem;
+}
+
+.row__title {
+  color: #e5e5e5;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.6rem 0.2rem;
+}
+
+.row__status {
+  color: #888888;
+  font-size: 0.85rem;
+  margin-left: 0.2rem;
+}
+
+.row__status--error {
+  color: #ffb3b3;
+}
+
+.row__scroller {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.2rem;
+  padding-top: 0.1rem;
+}
+
+.row__scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+.row__scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.row__scroller::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+}
+
+.row__inner {
+  display: inline-flex;
+  padding: 0.1rem 0.3rem 0.5rem;
+}
+
+.row__skeleton-card {
+  flex: 0 0 auto;
+  width: 150px;
+  height: 225px;
+  margin-right: 0.6rem;
+  border-radius: 0.35rem;
+  background: linear-gradient(90deg, #222 0px, #333 40px, #222 80px);
+  background-size: 200% 100%;
+  animation: row-skeleton 1.2s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .row__skeleton-card {
+    width: 180px;
+    height: 270px;
+    margin-right: 0.8rem;
+  }
+}
+
+@keyframes row-skeleton {
+  0% {
+    background-position: -40px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
