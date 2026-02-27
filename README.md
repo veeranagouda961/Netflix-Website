@@ -1,6 +1,6 @@
 # 🎬 Netflix-Style React Frontend (TMDB)
 
-This project is a **Netflix-style movie browsing UI** built with **React (Vite)** and the **TMDB API**. It is a **front-end only** application that showcases a cinematic hero/banner, multiple horizontally scrolling movie rows, smooth hover effects and transitions, and a responsive layout for mobile and desktop.
+This project is a **Netflix-style movie browsing UI** built with **React (Vite)** and the **TMDB API**. It is a **front-end only** application that showcases a cinematic hero/banner, multiple horizontally scrolling movie rows, smooth hover effects and transitions, and a responsive layout for mobile and desktop
 
 ---
 
